@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IvanStore PRO</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+/* HEADER */
+header{
+    display:flex;
+    justify-content:space-between;
+    padding:20px;
+    background:#020617;
+    position:sticky;
+    top:0;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+    color:#38bdf8;
+}
+
+nav a{
+    margin:0 10px;
+    text-decoration:none;
+    color:white;
+}
+
+/* HERO */
+.hero{
+    height:60vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(45deg,#0ea5e9,#6366f1);
+}
+
+.hero h1{
+    font-size:40px;
+}
+
+.btn{
+    background:#22c55e;
+    border:none;
+    padding:10px 20px;
+    margin-top:10px;
+    cursor:pointer;
+    border-radius:10px;
+}
+
+/* PRODUCTOS */
+.productos{
+    padding:40px;
+}
+
+.contenedor{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#1e293b;
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:scale(1.05);
+}
+
+.card img{
+    width:100%;
+    border-radius:10px;
+}
+
+.btn-card{
+    background:#3b82f6;
+    border:none;
+    padding:8px 15px;
+    margin-top:10px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* FACTURADOR */
+.factura{
+    position:fixed;
+    right:0;
+    top:0;
+    width:300px;
+    height:100%;
+    background:#020617;
+    padding:20px;
+    overflow:auto;
+}
+
+.factura h2{
+    text-align:center;
+}
+
+.item{
+    display:flex;
+    justify-content:space-between;
+    margin:10px 0;
+}
+
+/* BOTON FLOTANTE */
+.flotante{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#22c55e;
+    padding:15px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:20px;
+}
+
+/* CONTACTO */
+.contacto{
+    padding:40px;
+}
+
+input, textarea{
+    width:100%;
+    margin:10px 0;
+    padding:10px;
+    border-radius:10px;
+    border:none;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:20px;
+    background:#020617;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <div class="logo">IvanStore PRO</div>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div>
+        <h1>Eleva tu estilo 🔥</h1>
+        <p>Compra inteligente y rápida</p>
+        <button class="btn">Explorar</button>
+    </div>
+</section>
+
+<section id="productos" class="productos">
+    <h2>Productos</h2>
+
+    <div class="contenedor">
+
+        <div class="card">
+            <img src="https://via.placeholder.com/200">
+            <h3>Camiseta</h3>
+            <p>$10</p>
+            <button class="btn-card" onclick="agregar('Camiseta',10)">Agregar</button>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/200">
+            <h3>Pantalón</h3>
+            <p>$20</p>
+            <button class="btn-card" onclick="agregar('Pantalón',20)">Agregar</button>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/200">
+            <h3>Chaqueta</h3>
+            <p>$30</p>
+            <button class="btn-card" onclick="agregar('Chaqueta',30)">Agregar</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- FACTURA -->
+<div class="factura">
+    <h2>Factura 🧾</h2>
+    <div id="lista"></div>
+    <hr>
+    <h3>Total: $<span id="total">0</span></h3>
+</div>
+
+<!-- BOTON FLOTANTE -->
+<div class="flotante" onclick="vaciar()">🗑️</div>
+
+<section id="contacto" class="contacto">
+    <h2>Contacto</h2>
+    <input type="text" placeholder="Nombre">
+    <input type="email" placeholder="Correo">
+    <textarea placeholder="Mensaje"></textarea>
+    <button class="btn">Enviar</button>
+</section>
+
+<footer>
+    <p>© 2026 IvanStore</p>
+</footer>
+
+<script>
+let total = 0;
+
+function agregar(nombre, precio){
+    const lista = document.getElementById("lista");
+
+    let item = document.createElement("div");
+    item.classList.add("item");
+    item.innerHTML = `<span>${nombre}</span><span>$${precio}</span>`;
+
+    lista.appendChild(item);
+
+    total += precio;
+    document.getElementById("total").innerText = total;
+}
+
+function vaciar(){
+    document.getElementById("lista").innerHTML = "";
+    total = 0;
+    document.getElementById("total").innerText = total;
+}
+</script>
+
+</body>
+</html>
