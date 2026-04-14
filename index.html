@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IvanStore PRO</title>
+
 <style>
 :root{
     --bg:#1e293b;
@@ -161,7 +162,17 @@ footer{
 
 <body>
 
+<header>
+    <div class="logo">IvanStore</div>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#productos">Tienda</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+</header>
 
+<section class="hero">
+    <h1>Estilo suave y moderno</h1>
     <p>Minimalismo que vende</p>
 </section>
 
@@ -170,7 +181,12 @@ footer{
 
     <div class="lista">
 
-        
+        <div class="card">
+            <img src="https://via.placeholder.com/100">
+            <div class="info">
+                <h3>Camiseta básica</h3>
+                <p class="price">$15</p>
+                <span class="stock">Stock: 45</span>
             </div>
             <button class="btn" onclick="agregar('Camiseta',15)">+</button>
         </div>
@@ -248,10 +264,20 @@ function agregar(nombre, precio){
     document.getElementById("total").innerText = total;
 }
 
+function calcularCambio(){
+    let pago = parseFloat(document.getElementById("pago").value);
 
+    if(isNaN(pago)){
+        alert("Ingresa el monto con el que paga");
+        return;
     }
 
-   
+    if(pago < total){
+        document.getElementById("cambio").innerText = "Falta dinero";
+    } else {
+        let cambio = pago - total;
+        document.getElementById("cambio").innerText = "Cambio: $" + cambio.toFixed(2);
+    }
 }
 </script>
 
