@@ -259,20 +259,10 @@ function agregar(nombre, precio){
     document.getElementById("total").innerText = total;
 }
 
-function calcularCambio(){
-    let pago = parseFloat(document.getElementById("pago").value);
 
-    if(isNaN(pago)){
-        alert("Ingresa el monto con el que paga");
-        return;
     }
 
-    if(pago < total){
-        document.getElementById("cambio").innerText = "Falta dinero";
-    } else {
-        let cambio = pago - total;
-        document.getElementById("cambio").innerText = "Cambio: $" + cambio.toFixed(2);
-    }
+   
 }
 </script>
 
